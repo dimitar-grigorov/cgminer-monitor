@@ -4,12 +4,10 @@ import json
 
 class CgminerAPI(object):
     """ Cgminer RPC API wrapper. """
-    def __init__(self, host='rasphi.bp', port=4028):
+    def __init__(self, host='localhost', port=4028):
         self.data = {}
         self.host = host
         self.port = port
-
-        #print "API - Host: {0} Port: {1}".format(self.host,self.port)
 
     def command(self, command, arg=None):
         """ Initialize a socket connection,
@@ -44,6 +42,12 @@ class CgminerAPI(object):
         return msg
 
     def __getattr__(self, attr):
+        """ Allow us to make command calling methods.
+
+        >>> cgminer = CgminerAPI()
+        >>> cgminer.summary()
+
+        """
         def out(arg=None):
             return self.command(attr, arg)
         return out
