@@ -3,7 +3,7 @@ import argparse
 import os
 import sys
 sys.path.append(os.getcwd())
-import cgapi
+import pycgminer
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
