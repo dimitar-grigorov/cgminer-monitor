@@ -1,9 +1,10 @@
-import socket
 import json
+import socket
 
 
 class CgminerAPI(object):
     """ Cgminer RPC API wrapper. """
+
     def __init__(self, host='localhost', port=4028):
         self.data = {}
         self.host = host
@@ -15,7 +16,6 @@ class CgminerAPI(object):
         receive the response (and decode it).
         """
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
         try:
             sock.connect((self.host, self.port))
             payload = {"command": command}
@@ -48,6 +48,8 @@ class CgminerAPI(object):
         >>> cgminer.summary()
 
         """
+
         def out(arg=None):
             return self.command(attr, arg)
+
         return out
