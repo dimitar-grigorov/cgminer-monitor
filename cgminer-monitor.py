@@ -1,8 +1,8 @@
 #!/usr/bin/python
 import argparse
-import os
-import sys
-sys.path.append(os.getcwd())
+# import os
+# import sys
+# sys.path.append(os.getcwd())
 import pycgminer
 
 if __name__ == '__main__':
@@ -19,6 +19,7 @@ myPort = args.port
 cgminer = pycgminer.CgminerAPI()
 cgminer.host = myHost
 cgminer.port = int(myPort)
+
 summary = cgminer.command('summary')
 secrate = summary[unicode('SUMMARY')][0].get(unicode('GHS 5s'), None)
 
@@ -28,7 +29,7 @@ if not secrate:
 
 print secrate
 
-#if secrate < args.rate:
-#    exit(1)
-#else:
-#    exit(0)
+# if secrate < args.rate:
+#     exit(1)
+# else:
+#     exit(0)
