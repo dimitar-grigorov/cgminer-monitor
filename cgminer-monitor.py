@@ -1,35 +1,47 @@
 #!/usr/bin/python
 import argparse
-# import os
-# import sys
-# sys.path.append(os.getcwd())
 import pycgminer
 
+
+
 if __name__ == '__main__':
+    modeHelp = "How the output will be formatted. Use either Default or PRTG."
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', '--host', required=True)
     parser.add_argument('-p', '--port', type=int, default=4028)
-    # parser.add_argument('-r', '--rate')
+    parser.add_argument('-m', '--mode', default="Default", help=modeHelp)
+    parser.add_argument('-r', '--min-rate', default=0, type=float, help="Min rate. Use only with --mode=PRTG")
     args = parser.parse_args()
 
-myHost = args.host
-myPort = args.port
+# Store arguments in variable
+minerHost = args.host
+minerPort = args.port
+minRate = float(args.min_rate);
+prtgMode = args.mode == "PRTG"
 
-# print "Connecting to {host} on port {port}".format(host=myHost,port=4028)
-cgminer = pycgminer.CgminerAPI()
-cgminer.host = myHost
-cgminer.port = int(myPort)
-
-summary = cgminer.command('summary')
-secrate = summary[unicode('SUMMARY')][0].get(unicode('GHS 5s'), None)
-
-# Is None?
-if not secrate:
+if prtgMode and (minRate == 0):
+    print "--min-rate is required to be positive in PRTG mode"
     exit(1)
 
-print secrate
+# Setup API object
+cgminer = pycgminer.CgminerAPI()
+cgminer.host = minerHost
+cgminer.port = int(minerPort)
 
-# if secrate < args.rate:
-#     exit(1)
-# else:
-#     exit(0)
+# All output of the command "summary"
+summary = cgminer.command('summary')
+hashesPerFive = summary[unicode('SUMMARY')][0].get(unicode('GHS 5s'), None)
+hashesPerFive = float(hashesPerFive)
+# Is hashes None?
+if not hashesPerFive:
+    exit(1)
+
+# PRTG mode
+if prtgMode:
+    if hashesPerFive < minRate:
+        print '{0}:ERROR'.format(hashesPerFive)
+    else:
+        print '{0}:OK'.format(hashesPerFive)
+# Default mode
+else:
+    print hashesPerFive
