@@ -1,6 +1,6 @@
 # CGMiner Monitor
 
-CGMiner Monitor is a Python-based utility that allows you to monitor the performance of your CGMiner. It provides real-time insights into your CGMiner's performance and can be configured to output in different formats.
+CGMiner Monitor is a Python-based utility designed to provide real-time insights into the performance of your CGMiner. It offers flexible output formatting and can seamlessly integrate with popular monitoring systems such as Zabbix and PRTG.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ CGMiner Monitor is a Python-based utility that allows you to monitor the perform
 
 ## Usage
 
-To run the CGMiner Monitor, use the following command:
+To run CGMiner Monitor, use the following command:
 
 ```bash
 python cgminer-monitor.py -a <host> -p <port> -m <mode> -r <min-rate>
@@ -41,6 +41,13 @@ python cgminer-monitor.py -a <host> -p <port> -m <mode> -r <min-rate>
 `<port>`: The port number on which CGMiner is running. Default is 4028.  
 `<mode>`: The output format. Use either Default or PRTG. Default is Default.  
 `<min-rate>`: The minimum rate. Use only with `--mode=PRTG`. Default is 0.  
+
+## Integration with Monitoring Systems
+
+CGMiner Monitor is compatible with popular monitoring systems:
+
+- **Zabbix:** Utilize the flexible output formats for seamless integration into your Zabbix monitoring setup.
+- **PRTG:** Tailor the output to PRTG format to monitor CGMiner with precision.
 
 ## License
 
