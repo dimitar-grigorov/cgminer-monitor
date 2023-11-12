@@ -35,11 +35,13 @@ To run the CGMiner Monitor, use the following command:
 python cgminer-monitor.py -a <host> -p <port> -m <mode> -r <min-rate>
 ```
 
-Where:
-\<host>: The host address of the CGMiner.
-\<port>: The port number on which CGMiner is running. Default is 4028.
-\<mode>: The output format. Use either Default or PRTG. Default is Default.
-\<min-rate>: The minimum rate. Use only with --mode=PRTG. Default is 0.
+**Where:**
 
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+`<host>`: The host address of the CGMiner.  
+`<port>`: The port number on which CGMiner is running. Default is 4028.  
+`<mode>`: The output format. Use either Default or PRTG. Default is Default.  
+`<min-rate>`: The minimum rate. Use only with `--mode=PRTG`. Default is 0.  
+
+## License
+
+This project is licensed under the [MIT License](https://github.com/dimitar-grigorov/cgminer-monitor/blob/master/LICENSE.md) - see the LICENSE.md file for details.
